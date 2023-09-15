@@ -1,17 +1,50 @@
 import React, {useEffect, useState} from "react";
 import InputRow from "./InputRow";
 import _ from "lodash";
+import wordleWordlist from "wordle-wordlist";
+
+async function getWords(){
+    var words = await wordleWordlist.answers();
+    let rand = Math.floor(Math.random()*words.length);
+
+    let randomWordAnswer = words[rand];
+    console.log(randomWordAnswer);
+    return randomWordAnswer;
+}
 
 function Grid(){
     const [guess, setGuess] = useState("");
     const [guessArray,setGuessArray] = useState([]);
+    const [answer, setAnswer] = useState("");
+    const [isWon, setIsWon] = useState(false);
 
+    let gameMessage = "";
+
+    useEffect(()=>{
+        getWords().then((ans)=>{
+            setAnswer(ans);
+        }).catch((err)=>{
+            console.log(err);
+        })
+    },[]);
 
     function handleKeyDown(event){
+        if(guessArray.length < 7){
+            for(let i = 0; i<guessArray.length;i++){
+                if(_.lowerCase(guessArray[i])===answer){
+                    for(let i = 0; i<8-guessArray.length;i++){
+                        guessArray.push("");
+                    }
+                    setGuess(""); 
+                    setIsWon(true);
+                } 
+            }
+        }
         if(event.key.length===1 && _.capitalize(event.key) >= "A" && _.capitalize(event.key) <= "Z" && guess.length < 5 && guessArray.length < 7){
             setGuess( (prevData)=> {
-                if(prevData.length!==5)
+                if(prevData.length!==5){
                     return guess + _.capitalize(event.key);
+                }
                 else    
                     return prevData;
             });
@@ -27,14 +60,13 @@ function Grid(){
             });
             setGuess(""); 
         }
-    }
+    }    
 
         useEffect(()=>{
             window.addEventListener("keydown", handleKeyDown);
             return () => window.removeEventListener("keydown", handleKeyDown);
         }, [handleKeyDown]);
    
-        
 
     return(
         <div>
@@ -44,6 +76,8 @@ function Grid(){
              <InputRow guess={guessArray[3] ? guessArray[3] : guess}/>
              <InputRow guess={guessArray[4] ? guessArray[4] : guess}/>
              <InputRow guess={guessArray[5] ? guessArray[5] : guess}/>
+             <h1>{isWon ? "You Win!" : null}</h1>
+             <h1>{!isWon && guessArray.length > 5 ? "You Lose!" : null}</h1>
         </div>
     );
 }
