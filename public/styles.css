@@ -1,0 +1,44 @@
+html{
+    font-size: larger;
+    font-weight: 900;
+    background-color: #008170;
+}
+
+h1{
+    text-align: center;
+    color: #232D3F;
+    text-shadow: #0F0F0F 2px 1px;
+    text-decoration: underline;
+}
+
+p{
+    color: #19b09c;
+}
+
+.refresh{
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+    color: #005B41;
+    text-shadow: #0F0F0F 1px 1px
+}
+
+.row-container{
+    display: flex;
+    justify-content: center;
+    height: 13vh;
+}
+
+.box{
+    display: flex;
+    background-color: #232D3F;
+    align-items: center;
+    justify-content: center;
+    padding: 25px;
+    width: 10px;
+    height: 10px;
+    position: sticky;
+    margin: 10px;
+    border-radius: 5px;
+    border: #0c241e solid 5px;
+}

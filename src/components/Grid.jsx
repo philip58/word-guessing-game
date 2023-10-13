@@ -18,8 +18,6 @@ function Grid(){
     const [answer, setAnswer] = useState("");
     const [isWon, setIsWon] = useState(false);
 
-    let gameMessage = "";
-
     useEffect(()=>{
         getWords().then((ans)=>{
             setAnswer(ans);
@@ -70,12 +68,12 @@ function Grid(){
 
     return(
         <div>
-             <InputRow guess={guessArray[0] ? guessArray[0] : guess}/>
-             <InputRow guess={guessArray[1] ? guessArray[1] : guess}/>
-             <InputRow guess={guessArray[2] ? guessArray[2] : guess}/>
-             <InputRow guess={guessArray[3] ? guessArray[3] : guess}/>
-             <InputRow guess={guessArray[4] ? guessArray[4] : guess}/>
-             <InputRow guess={guessArray[5] ? guessArray[5] : guess}/>
+             <InputRow answer={answer} guess={guessArray[0] ? guessArray[0] : guess}/>
+             <InputRow answer={answer} guess={guessArray[1] ? guessArray[1] : guess}/>
+             <InputRow answer={answer} guess={guessArray[2] ? guessArray[2] : guess}/>
+             <InputRow answer={answer} guess={guessArray[3] ? guessArray[3] : guess}/>
+             <InputRow answer={answer} guess={guessArray[4] ? guessArray[4] : guess}/>
+             <InputRow answer={answer} guess={guessArray[5] ? guessArray[5] : guess}/>
              <h1>{isWon ? "You Win!" : null}</h1>
              <h1>{!isWon && guessArray.length > 5 ? "You Lose!" : null}</h1>
         </div>

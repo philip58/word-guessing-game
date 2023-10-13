@@ -5,9 +5,10 @@ import Grid from "./Grid";
 function App(){
         
     return(
-        <div className="title">
-        <h1>Guess The Word</h1>
+        <div>
+        <h1 className="title">Guess The Word</h1>
         <Grid/>
+        <a className="refresh" href="/">Refresh</a>
         </div>
     );
 }
