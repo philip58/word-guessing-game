@@ -1,7 +1,14 @@
+.game{
+    height: 80vh;
+}
 html{
     font-size: larger;
     font-weight: 900;
     background-color: #008170;
+}
+
+.title{
+    padding-bottom: 15px;
 }
 
 h1{
@@ -9,6 +16,7 @@ h1{
     color: #232D3F;
     text-shadow: #0F0F0F 2px 1px;
     text-decoration: underline;
+    margin-top: 10px;
 }
 
 p{
@@ -26,7 +34,8 @@ p{
 .row-container{
     display: flex;
     justify-content: center;
-    height: 13vh;
+    height: 11vh;
+    margin: 0px;
 }
 
 .box{
@@ -38,7 +47,9 @@ p{
     width: 10px;
     height: 10px;
     position: sticky;
-    margin: 10px;
+    margin: 2px;
+    margin-top: 0px;
+    margin-bottom: 0px;
     border-radius: 5px;
     border: #0c241e solid 5px;
 }
